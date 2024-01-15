@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="750dp"
+        android:background="#34495E"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E" />
+
+    <Button
+        android:id="@+id/uploadMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:text="Upload Menu"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="200dp"/>
+
+    <Button
+        android:id="@+id/openMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:text="Open Menu"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="300dp"/>
+
+    <Button
+        android:id="@+id/updateMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:text="Update Menu"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="400dp"/>
+
+</RelativeLayout>

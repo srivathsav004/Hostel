@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminPageA">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="750dp"
+        android:background="#34495E"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E" />
+
+    <TextView
+        android:id="@+id/AdminPageA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="80dp"
+        android:text="Admin Page(A)"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/AdminFeeDetailsA"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginStart="50dp"
+        android:background="#34495E"
+        android:padding="15dp"
+        android:src="@drawable/payment" />
+
+    <TextView
+        android:id="@+id/AdminFeeDetailsTextViewA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="220dp"
+        android:text="Fee Details"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/AdminFoodMenuA"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginStart="250dp"
+        android:background="#34495E"
+        android:padding="15dp"
+        android:src="@drawable/menu"/>
+
+    <TextView
+        android:id="@+id/AdminFoodMenuTextViewA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_marginStart="250dp"
+        android:text="Food Menu"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/AdminComplaintsA"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginStart="50dp"
+        android:background="#34495E"
+        android:padding="15dp"
+        android:src="@drawable/question" />
+
+    <TextView
+        android:id="@+id/AdminComplaintsTextViewA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="470dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="220dp"
+        android:text="Complaints"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/AdminGuidelinesA"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginStart="250dp"
+        android:background="#34495E"
+        android:padding="15dp"
+        android:src="@drawable/rule" />
+
+    <TextView
+        android:id="@+id/AdminGuidelinesTextViewA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="470dp"
+        android:layout_marginStart="250dp"
+        android:text="Guidelines"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/logoutOptionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentEnd="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="15dp"
+        android:src="@drawable/logout" />
+
+    <ImageView
+        android:id="@+id/notice"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#34495E"
+        android:padding="15dp"
+        android:layout_marginTop="540dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="50dp"
+        android:src="@drawable/notice"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="650dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="100dp"
+        android:text="Add a Notice"
+        android:textSize="24dp"
+        android:textStyle="bold"/>
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginBottom="730dp"/>
+
+
+</RelativeLayout>

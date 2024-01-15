@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="750dp"
+        android:background="#34495E"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E" />
+
+    <ImageView
+        android:id="@+id/AddImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#34495E"
+        android:padding="15dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="50dp"
+        android:src="@drawable/addphoto"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="100dp"
+        android:text="Upload Image"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"
+        android:hint="Title"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"/>
+    <Button
+        android:id="@+id/noticebtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="350dp"
+        android:text="Upload"
+        android:textStyle="bold"
+        android:textSize="24dp"/>
+
+    <LinearLayout
+        android:id="@+id/viewnotice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="420dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="horizontal" />
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Hostel</string>
+    <string-array name="hostel_options">
+        <item>Hostel A</item>
+        <item>Hostel B</item>
+        <item>Hostel C</item>
+        <item>Hostel D</item>
+    </string-array>
+    <string name="select_hostel_hint">Select Hostel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
