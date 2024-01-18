@@ -1,4 +1,15 @@
 <resources>
+    <string-array name="department_names">
+        <item>Computer Science and Engineering (CSE)</item>
+        <item>Electronics and Communication Engineering (ECE)</item>
+        <item>Chemical Engineering</item>
+        <item>Civil Engineering</item>
+        <item>Mechanical Engineering</item>
+        <item>Electrical and Electronics Engineering (EEE)</item>
+        <item>Information Technology (IT)</item>
+        <item>Electronics and Instrumentation Engineering (EIE)</item>
+    </string-array>
+
     <string name="app_name">Hostel</string>
     <string-array name="hostel_options">
         <item>Hostel A</item>

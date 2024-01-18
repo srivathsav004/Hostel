@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class StudentSignupActivity extends AppCompatActivity {
 
-    private EditText nameEditText, emailEditText, regNoEditText, usernameEditText, passwordEditText, hostelEditText;
+    private EditText nameEditText, emailEditText, regNoEditText, usernameEditText, passwordEditText, hostelEditText,editTextdept,editTextRoomNumber;
     private Button nextButton;
 
     private final Set<String> allowedHostels = new HashSet<String>() {{
@@ -48,6 +48,8 @@ public class StudentSignupActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.editTextPasswordStudent);
         hostelEditText = findViewById(R.id.editTextHostelStudent);
         nextButton = findViewById(R.id.btnNextStudent);
+        editTextRoomNumber=findViewById(R.id.editTextRoomNumber);
+        editTextdept=findViewById(R.id.editTextdept);
 
         // Set click listener for the "Next" button
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +70,7 @@ public class StudentSignupActivity extends AppCompatActivity {
     }
 
     private boolean isValidHostel() {
-        String hostel = hostelEditText.getText().toString().trim().toLowerCase();
+        String hostel = hostelEditText.getText().toString().trim().toUpperCase();  // Convert to uppercase for consistency
         return allowedHostels.contains(hostel);
     }
 
@@ -78,17 +80,42 @@ public class StudentSignupActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         String registrationNumber = regNoEditText.getText().toString().trim();
-        String hostel = hostelEditText.getText().toString().trim();
+        String hostel = hostelEditText.getText().toString().trim().toUpperCase();
+        String roomNumber = editTextRoomNumber.getText().toString().trim(); // Retrieve room number
+        String department = editTextdept.getText().toString().trim(); // Retrieve department
 
-        // Create a unique key for the new student
-        String studentId = studentRef.push().getKey();
+        DatabaseReference hostelRef = getHostelSpecificReference(hostel);
 
-        // Create a StudentModel object
-        StudentModel studentModel = new StudentModel(username, name, email, registrationNumber, password, hostel);
+        if (hostelRef != null) {
+            String studentId = hostelRef.push().getKey();
 
-        // Store the new student data in Firebase Realtime Database
-        studentRef.child(studentId).setValue(studentModel);
+            StudentModel studentModel = new StudentModel(username, name, email, registrationNumber, password,
+                    roomNumber, hostel, department);
 
-        return true;  // Modify this as needed based on your requirements
+            // Store the new student data in the specific hostel node
+            hostelRef.child(studentId).setValue(studentModel);
+
+            return true;
+        } else {
+            Toast.makeText(this, "Invalid hostel", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+
+    // Add this method in StudentSignupActivity
+    private DatabaseReference getHostelSpecificReference(String hostel) {
+        switch (hostel) {
+            case "A":
+                return FirebaseDatabase.getInstance().getReference("studentA");
+            case "B":
+                return FirebaseDatabase.getInstance().getReference("studentB");
+            case "C":
+                return FirebaseDatabase.getInstance().getReference("studentC");
+            case "D":
+                return FirebaseDatabase.getInstance().getReference("studentD");
+            default:
+                return null;
+        }
     }
 }

@@ -6,15 +6,39 @@
     android:layout_height="match_parent"
 >
 
-    <View
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="750dp"
-        android:background="#34495E"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:scaleType="centerCrop"
+        android:layout_above="@id/bottomView"
+        android:layout_below="@id/topView"
+        android:alpha="0.1" />
+
     <View
+        android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#34495E" />
+        android:background="#34495E"
+        />
+
+    <View
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guidelines"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="120dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/uploadButton"
@@ -25,7 +49,7 @@
         android:text="Upload Guidelines"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginTop="200dp"/>
+        android:layout_marginTop="300dp"/>
 
     <Button
         android:id="@+id/openButton"
@@ -36,7 +60,7 @@
         android:text="Open Guidelines"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginTop="300dp"/>
+        android:layout_marginTop="200dp"/>
 
     <Button
         android:id="@+id/updateButton"

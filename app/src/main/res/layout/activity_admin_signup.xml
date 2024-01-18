@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E" />
+    <View
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E"
+        android:layout_alignParentBottom="true"
+        />
+
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:scaleType="centerCrop"
+        android:layout_above="@id/bottomView"
+        android:layout_below="@id/topView"
+        android:alpha="0.1" />
+
+    <TextView
+        android:id="@+id/textViewVisitWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Visit Official Campus Website"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"/>
+    <TextView
+        android:id="@+id/VisitWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Click here"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        />
 
     <TextView
         android:id="@+id/Adminsignuptextview"
@@ -10,7 +53,8 @@
         android:layout_height="wrap_content"
         android:text="Admin Signup"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="25dp"
+        android:textColor="@color/white"
         android:layout_marginStart="120dp"
         android:layout_marginEnd="100dp"
         android:layout_marginTop="20dp"/>
@@ -19,46 +63,83 @@
     <EditText
         android:id="@+id/editTextNameAdmin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/Adminsignuptextview"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="20dp"
-        android:hint="Name" />
+        android:hint="Name"
+        android:paddingStart="20dp"
+        android:background="@color/white"/>
 
     <EditText
         android:id="@+id/editTextUsernameAdmin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/editTextNameAdmin"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="Username" />
+        android:hint="Username"
+        android:paddingStart="20dp"
+        android:background="@color/white"/>
 
     <EditText
         android:id="@+id/editTextPasswordAdmin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/editTextUsernameAdmin"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="Password" />
+        android:hint="Password"
+        android:paddingStart="20dp"
+        android:background="@color/white"/>
+    <ImageView
+        android:id="@+id/togglePassword"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignEnd="@id/editTextPasswordAdmin"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="315dp"
+        android:src="@drawable/eye"
+        android:clickable="true"
+        android:onClick="togglePasswordVisibility"/>
+
+    <EditText
+        android:id="@+id/editTextConfirmPasswordAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/editTextPasswordAdmin"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Confirm Password"
+        android:paddingStart="20dp"
+        android:background="@color/white"/>
+    <ImageView
+        android:id="@+id/togglePassword1"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignEnd="@id/editTextPasswordAdmin"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="385dp"
+        android:src="@drawable/eye"
+        android:clickable="true"
+        android:onClick="togglePasswordVisibility"/>
 
 
     <EditText
         android:id="@+id/editTextHostel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextPasswordAdmin"
+        android:layout_height="50dp"
+        android:layout_below="@+id/editTextConfirmPasswordAdmin"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="Hostel Name" />
-
-
-
+        android:hint="Hostel Name"
+        android:paddingStart="20dp"
+        android:background="@color/white"/>
     <Button
         android:id="@+id/btnNextAdmin"
         android:layout_width="wrap_content"

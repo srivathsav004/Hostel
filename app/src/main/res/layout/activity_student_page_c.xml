@@ -6,18 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".StudentPageC">
 
-    <View
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="750dp"
-        android:background="#34495E"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:scaleType="centerCrop"
+        android:layout_above="@id/bottomView"
+        android:layout_below="@id/topView"
+        android:alpha="0.1" />
+
     <View
+        android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#34495E" />
-
     <TextView
-        android:id="@+id/StudentPageC"
+        android:id="@+id/StudentPageA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -28,87 +33,236 @@
         android:textColor="@color/white"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/StudentFeeDetailsC"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginStart="50dp"
-        android:background="#34495E"
-        android:padding="15dp"
-        android:src="@drawable/payment" />
-
-    <TextView
-        android:id="@+id/StudentFeeDetailsTextViewC"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="220dp"
-        android:text="Fee Details"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomView"
+        android:layout_below="@id/topView">
 
-    <ImageView
-        android:id="@+id/StudentFoodMenuC"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginStart="250dp"
-        android:background="#34495E"
-        android:padding="15dp"
-        android:src="@drawable/menu"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/StudentFoodMenuTextViewC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:layout_marginStart="250dp"
-        android:text="Food Menu"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="155dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="50dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="12dp">
 
-    <ImageView
-        android:id="@+id/StudentComplaintsC"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginStart="50dp"
-        android:background="#34495E"
-        android:padding="15dp"
-        android:src="@drawable/question" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/StudentComplaintsTextViewC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="510dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="220dp"
-        android:text="Complaints"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/StudentFeeDetailsC"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:background="#34495E"
+                        android:padding="15dp"
+                        android:src="@drawable/payment" />
 
-    <ImageView
-        android:id="@+id/StudentGuidelinesC"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginStart="250dp"
-        android:background="#34495E"
-        android:padding="15dp"
-        android:src="@drawable/rule" />
+                    <TextView
+                        android:id="@+id/StudentFeeDetailsTextViewC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/StudentFeeDetailsC"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:text="Fee Details"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/StudentGuidelinesTextViewC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="510dp"
-        android:layout_marginStart="250dp"
-        android:text="Guidelines"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="155dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="50dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/StudentFoodMenuC"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:background="#34495E"
+                        android:padding="15dp"
+                        android:src="@drawable/menu" />
+
+                    <TextView
+                        android:id="@+id/StudentFoodMenuTextViewC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/StudentFoodMenuC"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:text="Food Menu"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="155dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="280dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/StudentComplaintsC"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="20dp"
+                        android:background="#34495E"
+                        android:padding="15dp"
+                        android:src="@drawable/question" />
+
+                    <TextView
+                        android:id="@+id/StudentComplaintsTextViewC"
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_below="@+id/StudentComplaintsC"
+                        android:text="Complaints"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="155dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="280dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/StudentGuidelinesC"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="20dp"
+                        android:background="#34495E"
+                        android:padding="15dp"
+                        android:src="@drawable/rule" />
+
+                    <TextView
+                        android:id="@+id/StudentGuidelinesTextViewC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/StudentGuidelinesC"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:text="Guidelines"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="155dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="510dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/StudentNoticeC"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="20dp"
+                        android:background="#34495E"
+                        android:padding="15dp"
+                        android:src="@drawable/notice" />
+
+                    <TextView
+                        android:id="@+id/StudentNoticeTextViewC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/StudentNoticeC"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="30dp"
+                        android:text="Notice"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="155dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="510dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="12dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/AdminStudentListC"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="20dp"
+                        android:background="#34495E"
+                        android:padding="15dp"
+                        android:src="@drawable/people" />
+
+                    <TextView
+                        android:id="@+id/AdminStudentListTextViewC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/AdminStudentListC"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:text="Student List"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+    </ScrollView>
 
     <ImageView
         android:id="@+id/logoutOptionsButton"
@@ -121,6 +275,32 @@
         android:padding="15dp"
         android:src="@drawable/logout" />
 
+    <View
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E"
+        android:layout_alignParentBottom="true" />
+    <TextView
+        android:id="@+id/textViewVisitWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Visit Official Campus Website"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"/>
+    <TextView
+        android:id="@+id/VisitWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Click here"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -130,3 +310,5 @@
         android:layout_marginBottom="200dp"/>
 
 </RelativeLayout>
+
+

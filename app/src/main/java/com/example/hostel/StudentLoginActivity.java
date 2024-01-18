@@ -14,13 +14,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class StudentLoginActivity extends AppCompatActivity {
 
     private EditText editTextUsername;
     private EditText editTextPassword;
-    private Button btnLogin;
+    private Button btnLogin, back;
     private TextView studentSignupTextView;
 
     private DatabaseReference studentRef;
@@ -29,38 +33,38 @@ public class StudentLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_login);
-
-        // Initialize views
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        back = findViewById(R.id.back);
         studentSignupTextView = findViewById(R.id.StudentSignup);
 
-        studentRef = FirebaseDatabase.getInstance().getReference("studentData");
+        studentRef = FirebaseDatabase.getInstance().getReference();
 
-        // Set click listener for the "Login" button
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StudentLoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Get the entered username and password
                 final String username = editTextUsername.getText().toString().trim();
                 final String password = editTextPassword.getText().toString().trim();
-
-                // Check credentials using Firebase Realtime Database
-                studentRef.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                studentRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            for (DataSnapshot studentSnapshot : dataSnapshot.getChildren()) {
-                                StudentModel studentModel = studentSnapshot.getValue(StudentModel.class);
-                                if (studentModel != null && studentModel.password.equals(password)) {
-                                    redirectToStudentPage(username, studentModel.hostel);
-                                    return;
+                            for (DataSnapshot hostelSnapshot : dataSnapshot.getChildren()) {
+                                String hostelNode = hostelSnapshot.getKey();
+                                if (hostelNode != null && hostelNode.startsWith("student")) {
+                                    checkCredentialsInHostel(hostelNode, username, password);
                                 }
                             }
                         }
-                        // Credentials are incorrect, show a toast or perform additional actions
-                        Toast.makeText(StudentLoginActivity.this, "Invalid credentials. Please try again.", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -70,45 +74,57 @@ public class StudentLoginActivity extends AppCompatActivity {
                 });
             }
         });
-
-        // Set click listener for the "Sign Up" TextView
         studentSignupTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Open Studentsignupactivity when "Sign Up" TextView is clicked
                 Intent signupIntent = new Intent(StudentLoginActivity.this, StudentSignupActivity.class);
-
-                // Clear the back stack and start the new activity
                 signupIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
                 startActivity(signupIntent);
             }
         });
     }
+    private void checkCredentialsInHostel(final String hostelNode, final String username, final String password) {
+        studentRef.child(hostelNode).orderByChild("username").equalTo(username)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot studentSnapshot : dataSnapshot.getChildren()) {
+                                StudentModel studentModel = studentSnapshot.getValue(StudentModel.class);
+                                if (studentModel != null && studentModel.password.equals(password)) {
+                                    redirectToStudentPage(username, hostelNode);
+                                    return;
+                                }
+                            }
+                        }
+                    }
 
-    // Method to redirect to the student's page based on hostel
-    private void redirectToStudentPage(String username, String hostel) {
-        Class<?> studentPageClass = getStudentPageClassForHostel(hostel);
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(StudentLoginActivity.this, "Error checking credentials", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+    private void redirectToStudentPage(String username, String hostelNode) {
+        Class<?> studentPageClass = getStudentPageClassForHostel(hostelNode);
 
         if (studentPageClass != null) {
             Intent studentPageIntent = new Intent(StudentLoginActivity.this, studentPageClass);
             studentPageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(studentPageIntent);
         } else {
-            Toast.makeText(StudentLoginActivity.this, "Invalid hostel value: " + hostel, Toast.LENGTH_SHORT).show();
+            Toast.makeText(StudentLoginActivity.this, "Invalid hostel value: " + hostelNode, Toast.LENGTH_SHORT).show();
         }
     }
-
-    // Method to get the class for a given hostel
-    private Class<?> getStudentPageClassForHostel(String hostel) {
-        switch (hostel) {
-            case "A":
+    private Class<?> getStudentPageClassForHostel(String hostelNode) {
+        switch (hostelNode) {
+            case "studentA":
                 return StudentPageA.class;
-            case "B":
+            case "studentB":
                 return StudentPageB.class;
-            case "C":
+            case "studentC":
                 return StudentPageC.class;
-            case "D":
+            case "studentD":
                 return StudentPageD.class;
             default:
                 return null;

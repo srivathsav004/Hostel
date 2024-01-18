@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E" />
+
 
     <TextView
         android:id="@+id/Studentsignuptextview"
@@ -10,81 +16,201 @@
         android:layout_height="wrap_content"
         android:text="Student Signup"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="25dp"
+        android:textColor="@color/white"
         android:layout_marginStart="120dp"
         android:layout_marginEnd="100dp"
         android:layout_marginTop="20dp"/>
 
-    <EditText
-        android:id="@+id/editTextNameStudent"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Studentsignuptextview"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Name" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/topView"
+        android:layout_above="@+id/bottomView">
 
-    <EditText
-        android:id="@+id/editTextEmailStudent"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextNameStudent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="30dp"
+                android:background="@color/white"
+                android:hint="Name"
+                android:paddingStart="20dp"/>
+
+
+            <EditText
+                android:id="@+id/editTextEmailStudent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/editTextNameStudent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:background="@color/white"
+                android:hint="Email"
+                android:paddingStart="20dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Regestration number"
+                android:paddingStart="20dp"
+                android:id="@+id/RegNo"
+                android:layout_below="@+id/editTextEmailStudent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"/>
+
+
+            <EditText
+                android:id="@+id/editTextUsernameStudent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/RegNo"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:hint="Username"
+                android:paddingStart="20dp"
+                android:background="@color/white"/>
+
+            <EditText
+                android:id="@+id/editTextPasswordStudent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/editTextUsernameStudent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:hint="Password"
+                android:paddingStart="20dp"
+                android:inputType="textPassword"
+                android:background="@color/white"/>
+
+            <ImageView
+                android:id="@+id/togglePassword"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignEnd="@id/editTextPasswordStudent"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="380dp"
+                android:src="@drawable/eye"
+                android:clickable="true"
+                android:onClick="togglePasswordVisibility"/>
+
+            <EditText
+                android:id="@+id/editTextConfirmPasswordStudent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/editTextPasswordStudent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:hint="Confirm Password"
+                android:paddingStart="20dp"
+                android:inputType="textPassword"
+                android:background="@color/white"/>
+
+            <ImageView
+                android:id="@+id/togglePassword1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignEnd="@id/editTextConfirmPasswordStudent"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="450dp"
+                android:src="@drawable/eye"
+                android:clickable="true"
+                android:onClick="togglePasswordVisibility"/>
+
+
+            <EditText
+                android:id="@+id/editTextHostelStudent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/editTextConfirmPasswordStudent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:hint="Hostel"
+                android:paddingStart="20dp"
+                android:background="@color/white"/>
+
+            <EditText
+                android:id="@+id/editTextRoomNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/editTextHostelStudent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:hint="Room Number"
+                android:paddingStart="20dp"
+                android:background="@color/white"/>
+
+            <EditText
+                android:id="@+id/editTextdept"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/editTextRoomNumber"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:hint="Department"
+                android:paddingStart="20dp"
+                android:background="@color/white"/>
+            <Button
+                android:id="@+id/btnNextStudent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextdept"
+                android:text="Next"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/bottomView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextNameStudent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Email" />
-
-    <EditText
+        android:layout_height="80dp"
+        android:background="#34495E"
+        android:layout_alignParentBottom="true" />
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Regestration number"
-        android:id="@+id/RegNo"
-        android:layout_below="@+id/editTextEmailStudent"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"/>
-
-
-    <EditText
-        android:id="@+id/editTextUsernameStudent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/RegNo"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Username" />
-
-    <EditText
-        android:id="@+id/editTextPasswordStudent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextUsernameStudent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Password" />
-
-    <EditText
-        android:id="@+id/editTextHostelStudent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextPasswordStudent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Hostel" />
-
-
-    <Button
-        android:id="@+id/btnNextStudent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:scaleType="centerCrop"
+        android:layout_above="@id/bottomView"
+        android:layout_below="@id/topView"
+        android:alpha="0.1" />
+    <TextView
+        android:id="@+id/textViewVisitWebsite"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextHostelStudent"
-        android:text="Next"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
-
+        android:layout_height="60dp"
+        android:text="Visit Official Campus Website"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"/>
+    <TextView
+        android:id="@+id/VisitWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Click here"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

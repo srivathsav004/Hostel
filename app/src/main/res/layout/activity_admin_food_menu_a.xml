@@ -6,15 +6,38 @@
     android:layout_height="match_parent"
 >
 
-    <View
+    <ImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="750dp"
-        android:background="#34495E"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:scaleType="centerCrop"
+        android:layout_above="@id/bottomView"
+        android:layout_below="@id/topView"
+        android:alpha="0.1" />
     <View
+        android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#34495E" />
+        android:background="#34495E"
+        />
+
+    <View
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Food Menu"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="120dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/uploadMenuButton"
@@ -25,7 +48,7 @@
         android:text="Upload Menu"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginTop="200dp"/>
+        android:layout_marginTop="300dp"/>
 
     <Button
         android:id="@+id/openMenuButton"
@@ -36,7 +59,7 @@
         android:text="Open Menu"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginTop="300dp"/>
+        android:layout_marginTop="200dp"/>
 
     <Button
         android:id="@+id/updateMenuButton"
@@ -48,5 +71,16 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_marginTop="400dp"/>
+
+    <Button
+        android:id="@+id/downloadMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:text="Download Menu"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="500dp"/>
 
 </RelativeLayout>

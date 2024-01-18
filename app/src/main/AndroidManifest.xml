@@ -14,6 +14,54 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hostel">
         <activity
+            android:name=".AdminDataA"
+            android:exported="false" />
+        <activity
+            android:name=".StudentFeeDetailsB"
+            android:exported="false" />
+        <activity
+            android:name=".AdminFeeDetailsB"
+            android:exported="false" />
+        <activity
+            android:name=".AdminFoodMenuB"
+            android:exported="false" />
+        <activity
+            android:name=".AdminCompB"
+            android:exported="false" />
+        <activity
+            android:name=".StudentCompB"
+            android:exported="false" />
+        <activity
+            android:name=".AdminGuidelinesB"
+            android:exported="false" />
+        <activity
+            android:name=".StudentNoticeB"
+            android:exported="false" />
+        <activity
+            android:name=".AdminNoticeActivityB"
+            android:exported="false" />
+        <activity
+            android:name=".StudentDataB"
+            android:exported="false" />
+        <activity
+            android:name=".AdminCompA"
+            android:exported="false" />
+        <activity
+            android:name=".StudentCompA"
+            android:exported="false" />
+        <activity
+            android:name=".StudentNoticeA"
+            android:exported="false" />
+        <activity
+            android:name=".StudentDataA"
+            android:exported="false" />
+        <activity
+            android:name=".AdminNoticeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NoticeUploadA"
+            android:exported="false" />
+        <activity
             android:name=".AdminFeeDetailsA"
             android:exported="false" />
         <activity
@@ -23,16 +71,7 @@
             android:name=".AdminGuidelinesA"
             android:exported="false" />
         <activity
-            android:name=".AdminGuidlinesA"
-            android:exported="false" />
-        <activity
-            android:name=".DisplayAdminFoodMenuA"
-            android:exported="false" />
-        <activity
             android:name=".AdminFoodMenuA"
-            android:exported="false" />
-        <activity
-            android:name=".NoticeUploadA"
             android:exported="false" />
 
         <provider
@@ -80,6 +119,12 @@
             android:exported="false" />
         <activity
             android:name=".AdminLoginActivity"
+            android:exported="false" />
+        <service
+            android:name=".DownloadService"
+            android:exported="false" />
+        <service
+            android:name=".CallService"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

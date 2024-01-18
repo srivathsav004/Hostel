@@ -4,9 +4,9 @@
     android:layout_marginTop="270dp"
     android:layout_marginStart="30dp"
     android:layout_marginEnd="30dp"
-    android:layout_width="335dp"
+    android:layout_width="350dp"
     android:layout_height="200dp"
-    android:background="#FFD700"
+    android:background="@drawable/rounded_corner_background"
     android:gravity="center"
     tools:context=".LogoutConfirmationFragmentA">
 
@@ -32,7 +32,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginStart="50dp"
         android:layout_marginBottom="20dp"
-        android:background="#34495E"
+        android:background="@drawable/rounded_button"
         android:padding="10dp"
         android:textColor="#FFFFFF" />
 
@@ -43,7 +43,7 @@
         android:text="No"
         android:layout_marginTop="100dp"
         android:layout_marginStart="180dp"
-        android:background="#34495E"
+        android:background="@drawable/rounded_button"
         android:padding="10dp"
         android:textColor="#FFFFFF" />
 </RelativeLayout>

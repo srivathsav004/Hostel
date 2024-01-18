@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <View
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E" />
+    <View
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E"
+        android:layout_alignParentBottom="true"
+        />
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:scaleType="centerCrop"
+        android:layout_above="@id/bottomView"
+        android:layout_below="@id/topView"
+        android:alpha="0.1" />
+
+    <TextView
+        android:id="@+id/textViewVisitWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Visit Official Campus Website"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"/>
+    <TextView
+        android:id="@+id/VisitWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Click here"
+        android:textColor="@android:color/white"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        />
+
     <TextView
         android:id="@+id/textViewRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Role:"
+        android:text="Select Role"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:layout_marginStart="100dp"
+        android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"/>
 
     <RadioGroup
         android:id="@+id/radioGroupRoles"
@@ -21,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewRole"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="200dp">
 
         <RadioButton
             android:id="@+id/radioButtonStudent"
@@ -44,4 +89,5 @@
         android:layout_below="@id/radioGroupRoles"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp" />
+
 </RelativeLayout>

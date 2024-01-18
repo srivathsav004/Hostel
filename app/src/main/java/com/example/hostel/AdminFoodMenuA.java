@@ -1,31 +1,27 @@
 package com.example.hostel;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
+
 
 public class AdminFoodMenuA extends AppCompatActivity {
 
@@ -38,7 +34,8 @@ public class AdminFoodMenuA extends AppCompatActivity {
     private ProgressDialog pd;
     private String downloadUrl = "";
     private Uri pdfData;
-    private AlertDialog alertDialog;
+    private Button downloadMenuButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,135 +49,102 @@ public class AdminFoodMenuA extends AppCompatActivity {
         uploadMenuButton = findViewById(R.id.uploadMenuButton);
         openMenuButton = findViewById(R.id.openMenuButton);
         updateMenuButton = findViewById(R.id.updateMenuButton);
+        // Add this code where you handle the click event for the download button
+        Button downloadMenuButton = findViewById(R.id.downloadMenuButton);
+        downloadMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Fetch the latest download URL from Firebase
+                reference.child("menu").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String latestDownloadUrl = dataSnapshot.getValue(String.class);
+                        if (latestDownloadUrl != null && !latestDownloadUrl.isEmpty()) {
+                            // Start the DownloadService to download the file
+                            Intent downloadIntent = new Intent(AdminFoodMenuA.this, DownloadService.class);
+                            downloadIntent.putExtra(DownloadService.DOWNLOAD_URL_EXTRA, latestDownloadUrl);
+                            startService(downloadIntent);
+
+                            // Optionally, you can notify the user that the download has started
+                            Toast.makeText(AdminFoodMenuA.this, "Downloading...", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(AdminFoodMenuA.this, "No file available for download", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(AdminFoodMenuA.this, "Failed to fetch download URL", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
 
         uploadMenuButton.setOnClickListener(v -> opengallery());
 
-        openMenuButton.setOnClickListener(v -> {
-            if (!downloadUrl.isEmpty()) {
-                try
-                {
-                    Intent intentUrl = new Intent(Intent.ACTION_VIEW);
-                    intentUrl.setDataAndType(Uri.parse(downloadUrl), "application/pdf");
-                    intentUrl.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intentUrl);
-                }
-                catch (ActivityNotFoundException e)
-                {
+        openMenuButton.setOnClickListener(v -> openLatestUpdatedFile());
 
-                    Toast.makeText(this, "No PDF Viewer Installed", Toast.LENGTH_LONG).show();
-                }
-                //dialogMark(downloadUrl);
-                // Display PDF in WebView
-                //displayPdfInWebView(downloadUrl);
-            } else {
-                // Check if a file exists in Firebase Storage and display it
-                checkAndDisplayExistingFile();
-            }
-        });
-        updateMenuButton.setOnClickListener(v -> {
-            if (pdfData != null) {
-                pd.setMessage("Updating Menu...");
-                pd.show();
-
-                // Generate a unique name for the PDF file in Firebase Storage
-                String fileName = "menu.pdf"; // Fixed file name to ensure overwriting
-                StorageReference menuRef = storageReference.child("menusA/" + fileName);
-
-                // Upload the PDF file to Firebase Storage, this will overwrite the existing file
-                menuRef.putFile(pdfData)
-                        .addOnSuccessListener(taskSnapshot -> {
-                            // Get the download URL of the uploaded PDF
-                            menuRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                                // Update the 'downloadUrl' variable with the new URL
-                                downloadUrl = uri.toString();
-
-                                // TODO: Update the database with the new download URL
-                                // For example, you can update the 'menu' node in your database
-                                reference.child("menu").setValue(downloadUrl);
-
-                                pd.dismiss();
-                                Toast.makeText(AdminFoodMenuA.this, "Menu updated successfully", Toast.LENGTH_SHORT).show();
-                            }).addOnFailureListener(e -> {
-                                pd.dismiss();
-                                Toast.makeText(AdminFoodMenuA.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
-                            });
-                        })
-                        .addOnFailureListener(e -> {
-                            pd.dismiss();
-                            Toast.makeText(AdminFoodMenuA.this, "Failed to update menu", Toast.LENGTH_SHORT).show();
-                        });
-            } else {
-                Toast.makeText(AdminFoodMenuA.this, "No file selected for update", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void dialogMark(String url)
-    {
-        WebView webView;
-        Button btnClose;
-
-
-        Dialog markDialog=new Dialog(this,R.style.dialog);
-        markDialog.setContentView(R.layout.custom_dialog_layout);
-        webView=markDialog.findViewById(R.id.webView);
-        //btnClose=findViewById(R.id.btnClose);
-
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(url);
-//        btnClose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                markDialog.dismiss();
-//            }
-//        });
-
-        markDialog.show();
-
-
-
+        updateMenuButton.setOnClickListener(v -> updateFileInFirebase());
     }
 
-    private void displayPdfInWebView(String url) {
-        // Inflate the custom layout
-        View dialogView = getLayoutInflater().inflate(R.layout.custom_dialog_layout, null);
-
-        // Initialize the WebView
-        WebView webView = dialogView.findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
-        // Set up a WebViewClient to handle errors
-        webView.setWebViewClient(new WebViewClient() {
+    private void openLatestUpdatedFile() {
+        reference.child("menu").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                Log.e("WebView Error", "Error: " + description);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String latestDownloadUrl = dataSnapshot.getValue(String.class);
+                if (latestDownloadUrl != null && !latestDownloadUrl.isEmpty()) {
+                    // Open the latest updated PDF file
+                    try {
+                        Intent intentUrl = new Intent(Intent.ACTION_VIEW);
+                        intentUrl.setDataAndType(Uri.parse(latestDownloadUrl), "application/pdf");
+                        intentUrl.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intentUrl);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(AdminFoodMenuA.this, "No PDF Viewer Installed", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(AdminFoodMenuA.this, "No PDF file available", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(AdminFoodMenuA.this, "Failed to fetch latest PDF file URL", Toast.LENGTH_SHORT).show();
             }
         });
-
-        webView.loadUrl(url);  // Load the PDF URL directly
-
-        // Create the AlertDialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(AdminFoodMenuA.this);
-        builder.setView(dialogView);
-
-        // Set up the Close button
-        Button btnClose = dialogView.findViewById(R.id.btnClose);
-        btnClose.setOnClickListener(view -> alertDialog.dismiss()); // Close the dialog
-
-        // Show the AlertDialog
-        alertDialog = builder.create();
-        alertDialog.show();
     }
 
-    private void checkAndDisplayExistingFile() {
-        // Add logic to check if a file already exists in Firebase Storage
-        // For example, you can check if the 'downloadUrl' is not empty and then call displayPdfInWebView(downloadUrl)
+    private void updateFileInFirebase() {
+        if (pdfData != null) {
+            pd.setMessage("Updating Menu...");
+            pd.show();
+            String fileName = "menu.pdf";
+            StorageReference menuRef = storageReference.child("menusA/" + fileName);
+            menuRef.putFile(pdfData)
+                    .addOnProgressListener(taskSnapshot -> {
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                        pd.setMessage("Updating Menu... " + (int) progress + "%");
+                    })
+                    .addOnSuccessListener(taskSnapshot -> {
+                        menuRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                            downloadUrl = uri.toString();
+                            reference.child("menu").setValue(downloadUrl);
 
-        if (!downloadUrl.isEmpty()) {
-            displayPdfInWebView(downloadUrl);
+                            pd.dismiss();
+                            Toast.makeText(AdminFoodMenuA.this, "Menu updated successfully", Toast.LENGTH_SHORT).show();
+                        }).addOnFailureListener(e -> {
+                            pd.dismiss();
+                            Toast.makeText(AdminFoodMenuA.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
+                        });
+                    })
+                    .addOnFailureListener(e -> {
+                        pd.dismiss();
+                        Toast.makeText(AdminFoodMenuA.this, "Failed to update menu", Toast.LENGTH_SHORT).show();
+                    });
         } else {
-            Toast.makeText(AdminFoodMenuA.this, "No existing menu available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdminFoodMenuA.this, "No file selected for update", Toast.LENGTH_SHORT).show();
         }
     }
-
     private void opengallery() {
         Intent intent = new Intent();
         intent.setType("*/*");
