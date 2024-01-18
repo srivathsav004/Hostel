@@ -1,0 +1,26 @@
+<!-- res/layout/admincomp_a.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginTop="@dimen/notice_spacing">
+
+    <TextView
+        android:id="@+id/complaintTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="@dimen/notice_spacing"/>
+
+    <TextView
+        android:id="@+id/complaintSubject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="@dimen/notice_spacing"/>
+
+</LinearLayout>

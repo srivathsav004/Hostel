@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        android:scaleType="centerCrop"
+        android:layout_above="@id/bottomView"
+        android:layout_below="@id/topView"
+        android:alpha="0.1" />
+
+    <View
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Complaints"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="120dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/titlecompA"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/topView"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Subject"
+        android:paddingStart="20dp"
+        android:background="@color/white"/>
+
+    <EditText
+        android:id="@+id/complaintA"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:hint="Type in your Complaint"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/white"/>
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topView"
+        android:layout_marginTop="450dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
+        android:text="Submit"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+    <View
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#34495E"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
